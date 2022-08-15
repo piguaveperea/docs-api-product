@@ -1,0 +1,71 @@
+{
+    "openapi":"3.0.3",
+    "info":{
+        "title": "Document API Product",
+        "version": "v0.0.0.1",
+        "description": "Example how docmented an api ",
+        "contact":{
+            "name": "Victor Piguave",
+            "email": "victor.piguave.dev@gmail.com",
+            "url": "https://victor-piguave.xyz"
+        }
+    },
+    "tags":[
+        {
+            "name": "Product",
+            "desciption": "Get Product"
+        }
+    ],       
+    "paths":{
+        "/products":{
+            "get":{
+                "summary":"Mostrar todo los productos",
+                "tags": ["Product"], 
+                "description": "Return all product of the Database",
+                "responses":{
+                    "200":{
+
+                    }
+                }
+            }
+        },
+        "/product":{
+            "post":{
+                "summary": "Create new Product",
+                "tags":["Product"],
+                "requestBody":{
+                    "required":true,
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/Product"
+                            }
+                        }
+                        
+                    }
+                    
+                }
+            }
+        }
+    },
+    "components":{
+        "schemas":{
+            "Product":{
+                "type": "object",
+                "properties":{
+                    "id":{
+                        "type": "Integer", 
+                        "format": "int"
+                    },
+                    "title":{
+                        "type": "String",
+                        "format": "varchar(240)"
+                    },
+                    "description":{
+                        "type": "String"
+                    }
+                }
+            }
+        }
+    }
+}
