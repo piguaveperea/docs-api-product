@@ -185,7 +185,7 @@ router.get('/product/:id', async(req, res)=>{
  *             description: El producto no se elimino de forma correcta
  */
 router.delete('/product/:id', async(req,res)=>{
-   const id = req.params.id|
+   const id = req.params.id
    await Product.destroy({where: {id:id}}).then(()=>{res.json({message:"delete successfull"})}).catch((err)=>{res.json({message:err})})
 })
 
