@@ -1,16 +1,33 @@
 const express = require('express');
 const app = express();
 const swaggerUI = require('swagger-ui-express');
-const morgan = require('morgan')
+const swaggerJDocs = require('swagger-jsdoc');
+const morgan = require('morgan');
+const path = require('path')
 
-const options = require('./options.json')
-
-const setting = require('./setting')
+const swaggerSpec = {
+    definition:{
+        openapi: "3.0.0",
+        info:{
+            title: "Documentación de API Producto",
+            description: "Es una api para registo de producto de manara fácil",
+            version: "v0.0.1",
+            contact: {
+                name: "Victor Hugo Piguave Perea",
+                email: "victor.piguave.dev@gmail.com",
+                url: "https://victor-pigauve.xyz"
+            }
+        }
+    },
+    apis:[`${path.join(__dirname, './routers/*.js')}`]
+}
 
 app.use(morgan('dev'))
 app.use(express.json());
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(options));
-app.use('/', require('./routers/product'))
+app.use('/', require('./routers/product'));
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerJDocs(swaggerSpec)));
+
 
 
 app.listen(3000, ()=>{
