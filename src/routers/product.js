@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Product = require('../models/products')
 
-//Model
+//Model Product
 /**
  * @swagger
  * components:
